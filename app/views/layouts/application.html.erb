@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homework</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= link_to 'Bookings', bookings_path %>
+<%= link_to 'Customers', customers_path %>
+<%= link_to 'Cleaners', cleaners_path %>
+<% if current_admin_user %>
+	<%= link_to 'Cleaners', cleaners_path %> 
+<% end %>
+<hr>
+<% if current_customer %>
+  Logged in as <%= current_customer.first_name %>.
+  <%= link_to "Log Out", logout_path %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Log In", login_path %>
+<% end %>
+<% if current_admin_user %>
+	Logged in as Admin.
+  <%= link_to "Log Out", destroy_admin_user_session_path %>
+<% else %>
+  <%= link_to "Admin Sign Up", new_admin_user_registration_path %> or
+  <%= link_to "Admin Log In", new_admin_user_session_path %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
