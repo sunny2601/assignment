@@ -10,6 +10,7 @@ class CleanersController < ApplicationController
   # GET /cleaners/1
   # GET /cleaners/1.json
   def show
+    @bookings = Booking.where(cleaner_id: @cleaner.id)
   end
 
   # GET /cleaners/new

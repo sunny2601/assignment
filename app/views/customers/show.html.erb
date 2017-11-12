@@ -19,6 +19,15 @@
   <strong>City:</strong>
   <%= @customer.city.name %>
 </p>
+<% if @customer_bookings.present? %>
+	<h2>Bookings</h2>
+	<% @customer_bookings.each do |booking| %>
+		<%= booking.date %> | <%= booking.cleaner.first_name %><br>
+	<% end %>
+<% else %>
+	<h2>No Booking For You</h2>
+<% end %>	
+<br>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

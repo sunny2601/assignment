@@ -26,7 +26,6 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-  
     @booking = current_customer.bookings.new(booking_params)
     cleaner = @booking.cleaner
     booked = cleaner.bookings.where(date: @booking.date)
@@ -35,6 +34,7 @@ class BookingsController < ApplicationController
           format.html { redirect_to @booking, :notice => 'Cleaner not available' }
       else
         if @booking.save
+          CleanerMailer.booking_confirmation(cleaner, current_customer, @booking).deliver_later
           format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
           format.json { render :show, status: :created, locatin: @booking }
         else

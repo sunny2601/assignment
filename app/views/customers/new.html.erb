@@ -17,30 +17,30 @@
 
   <div class="field">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
+    <%= f.text_field :phone_number, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :city %><br>
-    <%= f.collection_select(:city_id, City.all, :id, :name) %>
+    <%= f.collection_select(:city_id, City.all, :id, :name, class: "form-control") %>
   </div>
-  <div class="actions"><%= f.submit "Sign Up" %></div>
+  <div class="actions"><%= f.submit :value => "Sign Up", :class => 'btn btn-primary' %></div>
 <% end %>
+<br>
 
-
-<%= link_to 'Back', customers_path %>
+<%= link_to 'Back', customers_path, class: 'btn btn-primary' %>

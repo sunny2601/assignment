@@ -7,29 +7,45 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= link_to 'Bookings', bookings_path %>
-<%= link_to 'Customers', customers_path %>
-<%= link_to 'Cleaners', cleaners_path %>
-<% if current_admin_user %>
-	<%= link_to 'Cleaners', cleaners_path %> 
-<% end %>
-<hr>
-<% if current_customer %>
-  Logged in as <%= current_customer.first_name %>.
-  <%= link_to "Log Out", logout_path %>
-<% else %>
-  <%= link_to "Sign Up", signup_path %> or
-  <%= link_to "Log In", login_path %>
-<% end %>
-<% if current_admin_user %>
-	Logged in as Admin.
-  <%= link_to "Log Out", destroy_admin_user_session_path %>
-<% else %>
-  <%= link_to "Admin Sign Up", new_admin_user_registration_path %> or
-  <%= link_to "Admin Log In", new_admin_user_session_path %>
-<% end %>
-<%= yield %>
+<div class="container">
+  <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <%= link_to 'Bookings', bookings_path, class: 'btn btn-primary' %>
+        <%= link_to 'Customers', customers_path, class: 'btn btn-primary' %>
+        <%= link_to 'Cleaners', cleaners_path, class: 'btn btn-primary' %>
+        <% if current_admin_user %>
+        	<%= link_to 'Cleaners', cleaners_path, class: 'btn btn-primary' %> 
+        <% end %>
+      </div>
+    </nav>    
+    <hr>
+    <div class="container-fluid" style="margin-top: 4%;">
+      <div class="row">
+        <% if current_admin_user.blank? %>
+          <% if current_customer %>
+            Logged in as <%= current_customer.first_name %>.
+            <%= link_to "Log Out", logout_path %>
+          <% else %>
+            <%= link_to "Sign Up", signup_path %> or
+            <%= link_to "Log In", login_path %>
+          <% end %>
+        <% end %>
+        <br>
+        <% if current_customer.blank? %>
+          <% if current_admin_user %>
+          	Logged in as Admin.
+            <%= link_to "Log Out", destroy_admin_user_session_path %>
+          <% else %>
+            <%= link_to "Admin Sign Up", new_admin_user_registration_path %> or
+            <%= link_to "Admin Log In", new_admin_user_session_path %>
+          <% end %>
+        <% end %>  
+        <%= yield %>
+      </div>
+    </div>  
+  </div>
+</div>  
 
 </body>
 </html>

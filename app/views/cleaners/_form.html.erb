@@ -11,31 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :quality_score %><br>
-    <%= f.text_field :quality_score %>
+    <%= f.text_field :quality_score, class: "form-control" %>
   </div>
   <div>
     <% City.all.each do |city| %>
     <label>
-        <%= check_box_tag "cleaner[city_ids][]", city.id, f.object.cities.include?(city) %>
+        <%= check_box_tag "cleaner[city_ids][]", city.id, f.object.cities.include?(city), class: "form-check-input" %>
         <%= city.name %><br>
     <% end %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :value => "Submit", :class => 'btn btn-primary' %>
   </div>
 <% end %>
+<br>

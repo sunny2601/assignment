@@ -18,6 +18,13 @@
   <strong>Quality score:</strong>
   <%= @cleaner.quality_score %>
 </p>
+<% if @bookings.present? %>
+	<% @bookings.each do |booking| %>
+		<%= booking.customer.first_name %><br>
+	<% end %>
+<% else %>
+	<h2>No Bookings For You</h2>
+<% end %>	
 
-<%= link_to 'Edit', edit_cleaner_path(@cleaner) %> |
-<%= link_to 'Back', cleaners_path %>
+<%= link_to 'Edit', edit_cleaner_path(@cleaner), class: "btn btn-primary" %> |
+<%= link_to 'Back', cleaners_path, class: "btn btn-primary" %>
